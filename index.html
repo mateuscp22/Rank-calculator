@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Partidas Rankeadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Calculadora de Partidas Rankeadas</h2>
+
+    <label for="currentRank">Rango Actual:</label>
+    <input type="number" id="currentRank" placeholder="Ingrese el rango actual" required>
+
+    <label for="desiredRank">Rango Deseado:</label>
+    <input type="number" id="desiredRank" placeholder="Ingrese el rango deseado" required>
+
+    <label for="lpPerWin">LP por Victoria:</label>
+    <input type="number" id="lpPerWin" placeholder="Ingrese LP por victoria" required>
+
+    <label for="lpPerLoss">LP por Derrota:</label>
+    <input type="number" id="lpPerLoss" placeholder="Ingrese LP por derrota" required>
+
+    <button onclick="calculateLP()">Calcular</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateLP() {
+            var currentRank = document.getElementById('currentRank').valueAsNumber;
+            var desiredRank = document.getElementById('desiredRank').valueAsNumber;
+            var lpPerWin = document.getElementById('lpPerWin').valueAsNumber;
+            var lpPerLoss = document.getElementById('lpPerLoss').valueAsNumber;
+
+            var lpNeeded = (desiredRank - currentRank) * lpPerWin;
+
+            if (lpNeeded > 0) {
+                document.getElementById('result').innerHTML = `Necesitas ganar ${lpNeeded} LP para llegar al rango deseado.`;
+            } else {
+                document.getElementById('result').innerHTML = 'Ya has alcanzado o superado el rango deseado.';
+            }
+        }
+    </script>
+</body>
+
+</html>
